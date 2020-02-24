@@ -1,0 +1,25 @@
+Parse.initialize("XwzO17kEcSpGStrrzELX3MlMDwGY7qSWHuRpaAT8","ln1wPlnsaXTkSwyvOg12k0wivy8uUuOA0fFWJaFI");
+Parse.serverURL = 'https://parseapi.back4app.com/';
+
+var Postt = Parse.Object.extend("Postt");
+var postt=new Postt();
+var data ={
+  "body":"hello my name is asma",
+  "tags":["first-postt","welcome"],
+  "numComents":0,
+};
+postt.save(data,{
+  success:function(obj){
+    console.log("successfully saved  "+obj.id);
+    var q = new Parse.Query("Postt");
+    q.get(postt.id,{
+      success: function (object) {
+        console.log("success get "+ object.id)
+      }
+    })
+    
+  },
+  error:function(err){
+    console.log(err);
+  }
+});
